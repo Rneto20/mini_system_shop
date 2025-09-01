@@ -1,8 +1,3 @@
-ALUNO : RAIMUNDO SALES BARBOSA NETO
-Projeto: Minissistema de vendas
-
-USE BDados
-
 CREATE TABLE cliente (
 	
 cod_cli  integer     NOT NULL,	
@@ -49,4 +44,5 @@ num_ped INTEGER NOT NULL,
 cod_prod SMALLINT NOT NULL,
 qtd_ped FLOAT NOT NULL,
 FOREIGN KEY(num_ped) REFERENCES pedido(num_ped),
+
 FOREIGN KEY(cod_prod) REFERENCES produto(cod_prod));
