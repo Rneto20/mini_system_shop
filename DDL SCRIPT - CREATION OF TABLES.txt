@@ -1,0 +1,52 @@
+ALUNO : RAIMUNDO SALES BARBOSA NETO
+Projeto: Minissistema de vendas
+
+USE BDados
+
+CREATE TABLE cliente (
+	
+cod_cli  integer     NOT NULL,	
+nome_cli varchar(70) NOT NULL,
+endereco varchar(100) NULL,	
+cidade 	 varchar(40)  NULL,
+cep      char(8) NULL,	
+uf       char(2) NULL,
+
+PRIMARY KEY (cod_cli));
+
+CREATE TABLE vendedor (
+
+cod_vend smallint 	NOT NULL,
+nome_vend varchar(70)	NOT NULL,		
+sal_fixo numeric(9,2) 	NOT NULL,
+faixa_comiss char(1) 	NOT NULL,
+
+PRIMARY KEY (cod_vend));
+
+CREATE TABLE produto (
+cod_prod smallint 	NOT NULL,
+unid_prod char(3)	NOT NULL,
+desc_prod varchar(40)	NOT NULL,
+val_unit numeric(9,2)	NOT NULL,
+
+PRIMARY KEY (cod_prod));
+
+CREATE TABLE pedido (
+
+num_ped  integer NOT NULL,
+data_ped DATE    NOT NULL,
+prazo_entr smallint NOT NULL,
+cod_cli integer    NOT NULL,
+cod_vend smallint   NOT NULL,
+ 
+PRIMARY KEY (num_ped),
+FOREIGN KEY (cod_cli) references cliente(cod_cli),
+FOREIGN KEY (cod_vend) references vendedor(cod_vend));
+
+CREATE TABLE item_pedido (
+
+num_ped INTEGER NOT NULL,
+cod_prod SMALLINT NOT NULL,
+qtd_ped FLOAT NOT NULL,
+FOREIGN KEY(num_ped) REFERENCES pedido(num_ped),
+FOREIGN KEY(cod_prod) REFERENCES produto(cod_prod));
